@@ -3,14 +3,11 @@
 
   angular
     .module('neosEx01')
-    .run(runBlock);
+    .factory('Tweets', Tweets);
 
   /** @ngInject */
-  function runBlock(configVar,$twitterApi,$base64,$http) {
-
-
+  function Tweets($http) {
 
 
   }
-
 })();

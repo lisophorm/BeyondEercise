@@ -1,10 +1,51 @@
-<div layout="column">
-  <div flex="50">
-    hello 1
+<md-toolbar>
+  <div class="md-toolbar-tools">
+    <md-input-container class="md-block" flex-gt-sm>
+      <label>Type your search here</label>
+      <input ng-model="vm.searchString" value="ciao mamma">
+    </md-input-container>
+    <md-button class="md-raised" aria-label="Learn More" ng-click="vm.search()">
+      Learn More
+    </md-button>
+    <md-button class="md-fab md-mini" aria-label="Favorite" >
+
+      <i class="material-icons">face</i>
+    </md-button>
   </div>
-</div>
-<div layout="column">
-  <div flex>
-    hello 2
-  </div>
-</div>
+
+
+</md-toolbar>
+
+<md-list flex>
+  <md-list-item ng-repeat="tweet in vm.tweetList" >
+    <img ng-src="{{tweet.face}}" class="md-avatar"  />
+    <!--div class="md-list-item-text"-->
+      <h3>{{tweet.name}}</h3>
+      <p>{{tweet.text}}</p>
+    <!--/div-->
+    <md-menu class="md-secondary">
+      <md-button >
+       ciao
+      </md-button>
+      <md-menu-content width="4">
+        <md-menu-item>
+          <md-button>
+            Redial
+          </md-button>
+        </md-menu-item>
+        <md-menu-item>
+          <md-button>
+            Check voicemail
+          </md-button>
+        </md-menu-item>
+        <md-menu-divider></md-menu-divider>
+        <md-menu-item>
+          <md-button>
+            Notifications
+          </md-button>
+        </md-menu-item>
+      </md-menu-content>
+    </md-menu>
+  </md-list-item>
+
+</md-list>
