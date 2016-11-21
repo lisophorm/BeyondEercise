@@ -2,6 +2,6 @@
   'use strict';
 
   angular
-    .module('neosEx01', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngMessages', 'ngAria', 'ngResource', 'ui.router', 'ngMaterial', 'toastr']);
+    .module('neosEx01', ['ngAnimate', 'ngCookies', 'ngSanitize', 'ngMessages', 'ngAria', 'ngResource', 'ui.router', 'ngMaterial', 'base64','ngTwitter']);
 
 })();
