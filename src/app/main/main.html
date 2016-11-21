@@ -1,51 +1,127 @@
-<md-toolbar>
-  <div class="md-toolbar-tools">
-    <md-input-container class="md-block" flex-gt-sm>
-      <label>Type your search here</label>
-      <input ng-model="vm.searchString" value="ciao mamma">
-    </md-input-container>
-    <md-button class="md-raised" aria-label="Learn More" ng-click="vm.search()">
-      Learn More
-    </md-button>
-    <md-button class="md-fab md-mini" aria-label="Favorite" >
+<div>
 
-      <i class="material-icons">face</i>
-    </md-button>
+  <div layout="row">
+
+    <div flex="20">First item in row</div>
+    <div flex>Second item in row</div>
+
+  </div>
+  <div layout="column">
+
+    <div flex="66">First item in column</div>
+    <div flex="33">Second item in column</div>
+
   </div>
 
+</div>
+<div layout="row">
+  <md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2" md-is-locked-open="true">
+    <md-button ng-click="vm.createCategory($event)">
+      create new category
+    </md-button>
+    <md-list class="md-dense" flex>
+      <md-list-item class="md-2-line" ng-repeat="item in vm.categories" ng-click="vm.showCat($index)">
+        <div class="md-list-item-text" layout="column">
+          <p>{{item.label}}</p>
+        </div>
+        <md-button class="md-secondary md-icon-button" ng-click="">
+          <i class="material-icons">delete</i>
+        </md-button>
+      </md-list-item>
+    </md-list>
+  </md-sidenav>
+  <md-content>
 
-</md-toolbar>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <md-input-container md-theme="input" flex>
+          <label>&nbsp;</label>
+          <input ng-model="search.who" placeholder="enter search">
+        </md-input-container>
+        <md-button aria-label="Search" ng-click="showSearch = !showSearch">
+          <ng-md-icon icon="search"></ng-md-icon>
+        </md-button>
+        <md-button class="md-secondary md-icon-button" ng-click="">
+          <i class="material-icons">cancel</i>
+        </md-button>
+        <md-button class="md-secondary md-icon-button" ng-click="">
+          <i class="material-icons">search</i>
+        </md-button>
 
-<md-list flex>
-  <md-list-item ng-repeat="tweet in vm.tweetList" >
-    <img ng-src="{{tweet.face}}" class="md-avatar"  />
-    <!--div class="md-list-item-text"-->
-      <h3>{{tweet.name}}</h3>
-      <p>{{tweet.text}}</p>
-    <!--/div-->
-    <md-menu class="md-secondary">
-      <md-button >
-       ciao
-      </md-button>
-      <md-menu-content width="4">
-        <md-menu-item>
-          <md-button>
-            Redial
-          </md-button>
-        </md-menu-item>
-        <md-menu-item>
-          <md-button>
-            Check voicemail
-          </md-button>
-        </md-menu-item>
-        <md-menu-divider></md-menu-divider>
-        <md-menu-item>
-          <md-button>
-            Notifications
-          </md-button>
-        </md-menu-item>
-      </md-menu-content>
-    </md-menu>
-  </md-list-item>
 
-</md-list>
+      </div>
+
+
+    </md-toolbar>
+    <md-tabs md-dynamic-height md-border-bottom>
+      <md-tab label="one">
+        <md-content class="md-padding">
+          <md-list flex>
+            <md-list-item ng-repeat="tweet in vm.tweetList">
+              <img ng-src="{{tweet.face}}" class="md-avatar"/>
+              <div class="md-list-item-text">
+                <h3>{{tweet.name}}</h3>
+                <p>{{tweet.text}}</p>
+              </div>
+              <md-button>unassigned</md-button>
+              <md-menu class="md-secondary">
+                <md-button>
+                  ciao
+                </md-button>
+                <md-menu-content width="6">
+                  <md-menu-item ng-repeat="item in vm.categories">
+                    <md-button ng-click="vm.catclick($parent.$index,$index)">
+                      <md-icon md-menu-align-target md-svg-icon="call:no-sim"></md-icon>
+                      Option {{item.label}}
+                    </md-button>
+                  </md-menu-item>
+                  <md-menu-item>
+                    <md-button ng-click="vm.createCategory($event,$parent.$index,$index)">
+                      create new category
+                    </md-button>
+                  </md-menu-item>
+                </md-menu-content>
+              </md-menu>
+            </md-list-item>
+
+          </md-list>
+        </md-content>
+      </md-tab>
+      <md-tab label="two">
+        <md-content class="md-padding">
+          <md-list flex>
+            <md-list-item ng-repeat="tweet in vm.catTweetList">
+              <img ng-src="{{tweet.face}}" class="md-avatar"/>
+              <div class="md-list-item-text">
+                <h3>{{tweet.name}}</h3>
+                <p>{{tweet.text}}</p>
+              </div>
+              <md-button>unassigned</md-button>
+              <md-menu class="md-secondary">
+                <md-button>
+                  ciao
+                </md-button>
+                <md-menu-content width="6">
+                  <md-menu-item ng-repeat="item in vm.categories">
+                    <md-button ng-click="vm.catclick($parent.$index,$index)">
+                      <md-icon md-menu-align-target md-svg-icon="call:no-sim"></md-icon>
+                      Option {{item.label}}
+                    </md-button>
+                  </md-menu-item>
+                  <md-menu-item>
+                    <md-button ng-click="vm.createCategory($event,$parent.$index,$index)">
+                      create new category
+                    </md-button>
+                  </md-menu-item>
+                </md-menu-content>
+              </md-menu>
+            </md-list-item>
+
+          </md-list>
+        </md-content>
+      </md-tab>
+
+    </md-tabs>
+
+  </md-content>
+</div>
