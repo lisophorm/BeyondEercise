@@ -8,12 +8,13 @@
   /** @ngInject */
   function Tweets($http, $q) {
 
+    var tweetList = [];
+
     var searchTweets = function (searchString, isHash) {
       var deferred = $q.defer();
 
       var hash = isHash == true ? "1" : "0";
 
-      var tweetList = [];
 
       $http.get('http://neos.crystal-bits.co.uk/neos.php', {
           params: {hash: hash, string: searchString},
@@ -50,11 +51,17 @@
 
     var checkForCats = function (catTweets) {
       for (var i = 0; i < tweetList.length; i++) {
+        var foundTweet = false;
         for (var a = 0; a < catTweets.length; a++) {
           if (tweetList[i].id == catTweets[a].id) {
             console.log('we have a match', catTweets[a]);
+            foundTweet = true;
             tweetList[i].category = catTweets[a].category;
           }
+        }
+        if (!foundTweet) {
+          console.log('not present');
+          delete tweetList[i].category;
         }
       }
       return tweetList;
@@ -70,7 +77,7 @@
 
     var service = {
       searchTweets: searchTweets,
-      checkForCats:checkForCats
+      checkForCats: checkForCats
 
     };
 

@@ -10,11 +10,9 @@
     var vm = this;
 
     vm.tweetsType = 0;
+    vm.loadInProgress=false;
 
     vm.tweetList = [
-      {text: "bella ciao"},
-      {text: "riga 2"},
-      {text: "riga 3"}
     ];
 
     vm.catTweetList = [];
@@ -36,12 +34,6 @@
 
       $scope.bigScreen = big;
     });
-
-
-    vm.searchString = "12312321";
-
-
-
 
 
     vm.catclick = function (parentIndex, index) {
@@ -91,6 +83,8 @@
         console.log(ciao);
         if (typeof tweet !== 'undefined') {
           console.log('********* add to towwetsd ', tweet, category);
+          vm.tweetList[tweet].category=vm.categories.length-1;
+          vm.catTweetList=CatTweets.addTweet(vm.tweetList[tweet], vm.categories.length-1);
         }
       }, function () {
         //$scope.status = 'You didn\'t name your dog.';
@@ -100,16 +94,20 @@
     vm.removeTweet=function(index) {
       console.log('removing categorized',index);
       vm.catTweetList=CatTweets.removeTweet(index);
+      vm.tweetList=Tweets.checkForCats(vm.catTweetList);
       console.log('removed tweet new list');
       console.log(vm.catTweetList);
     }
 
     vm.searchTweets = function (searchString, isHash) {
+      vm.loadInProgress=true;
       Tweets.searchTweets(searchString, isHash)
         .then(function (response) {
           vm.tweetList = response;
+          vm.loadInProgress=false;
 
         }, function (x) {
+          vm.loadInProgress=false;
           $mdDialog.show(
             $mdDialog.alert()
               .parent(angular.element(document.querySelector('#popupContainer')))
