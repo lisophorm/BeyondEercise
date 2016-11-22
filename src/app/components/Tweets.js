@@ -27,11 +27,12 @@
               var current=response.data.statuses[i];
               console.log(current.user.profile_image_url);
               var thisTweet={
+                id:current.id,
                 name:current.user.name,
                 text:current.text,
                 face:current.user.profile_image_url
               }
-              //console.log(thisTweet);
+              console.log(thisTweet);
               tweetList.push(thisTweet);
             }
           }

@@ -58,6 +58,18 @@ html {
 md-toolbar md-icon.md-default-theme {
   color: white; }
 
+md-toolbar input {
+  color:white;
+}
+
+.catlabel{
+  background-color: #2f96b4;
+  color:white;
+  padding:10px;
+  margin-left:20px;
+  font-size:10px;
+}
+
 /**
  *  Do not remove the comment below. It's the markers used by gulp-inject to inject
  *  all your sass files automatically
