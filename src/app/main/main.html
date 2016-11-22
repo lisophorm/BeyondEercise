@@ -1,18 +1,21 @@
-<div layout="row" flex>
+
+<div layout="row" layout-fill>
 
   <md-sidenav layout="column"
               class="md-sidenav-left"
+              md-component-id="left"
               md-is-locked-open="vm.openNav"
               md-whiteframe="4">
-    <md-button ng-click="vm.createCategory($event)">
-      create new category
+    <md-button ng-click="vm.createCategory($event);vm.toggleSidenav('left')">
+      <ng-md-icon icon="add"></ng-md-icon>create new category
     </md-button>
     <md-list class="md-dense" flex>
-      <md-list-item class="md-2-line" ng-repeat="item in vm.categories" ng-click="vm.showCat($index)">
+      <md-list-item class="md-2-line" ng-repeat="item in vm.categories"
+                    ng-click="vm.showCat($index);vm.toggleSidenav('left')">
         <div class="md-list-item-text" layout="column">
           <p>{{item.label}}</p>
         </div>
-        <md-button class="md-secondary md-icon-button" ng-click="vm.deleteCat($index)">
+        <md-button class="md-secondary md-icon-button" ng-click="vm.deleteCat($index);vm.toggleSidenav('left')">
           <i class="material-icons">delete</i>
         </md-button>
       </md-list-item>
@@ -20,19 +23,51 @@
   </md-sidenav>
 
   <div layout="column" flex>
-
-    <md-toolbar layout="row">
+      <md-toolbar class="cyanbg">
       <div class="md-toolbar-tools">
+        <md-button ng-click="vm.toggleSidenav('left')" hide-gt-sm aria-label="Menu">
+          <md-tooltip md-direction="bottom">
+            category manager
+          </md-tooltip>
+          <ng-md-icon icon="menu"></ng-md-icon>
+        </md-button>
 
+        <md-input-container class="light-text" flex>
+          <label>&nbsp;</label>
+          <input ng-model="vm.searchString" ng-enter="vm.search()" placeholder="enter search">
+        </md-input-container>
+        <md-switch ng-model="vm.hashtag" aria-label="Switch 2" ng-true-value="'#'" ng-false-value="''" class="md-warn">
+          <md-tooltip md-direction="bottom">
+            Search by Hashtag
+          </md-tooltip>
+          Use #
+        </md-switch>
+        <md-button aria-label="Search" ng-click="vm.search()">
+          <ng-md-icon icon="search"></ng-md-icon>
+        </md-button>
+      </div>
 
+    </md-toolbar>
+    <!--md-toolbar layout="row">
+      <div class="md-toolbar-tools" layout-align="center center">
+
+        <md-button ng-click="vm.toggleSidenav('left')" hide-gt-sm aria-label="Menu">
+          <md-tooltip md-direction="bottom">
+            category manager
+          </md-tooltip>
+          <ng-md-icon icon="menu"></ng-md-icon>
+        </md-button>
         <md-input-container>
-          <md-checkbox ng-model="data.cb1" aria-label="Checkbox 1">
-            Hashtag
-          </md-checkbox>
+
 
           <input ng-model="vm.searchString" placeholder="enter search" style="margin-top:15px;margin-left:15px;">
         </md-input-container>
-
+<md-button ng-click="vm.toggleSidenav('left')" hide-gt-sm aria-label="Menu">
+          <md-tooltip md-direction="bottom">
+            category manager
+          </md-tooltip>
+          <ng-md-icon icon="menu"></ng-md-icon>
+        </md-button>
         <md-button class="md-secondary md-icon-button" ng-click="">
           <i class="material-icons">cancel</i>
         </md-button>
@@ -44,25 +79,31 @@
       </div>
 
 
-    </md-toolbar>
+    </md-toolbar-->
+
+
+
+
+
     <md-content layout-fill layout="column" flex>
       <md-progress-linear ng-disabled="!vm.loadInProgress" md-mode="query"></md-progress-linear>
-      <md-tabs md-dynamic-height md-border-bottom md-selected="vm.tweetsType">
+      <md-tabs md-dynamic-height md-selected="vm.tweetsType">
         <md-tab label="Search Results" flex>
           <md-content>
             <md-list flex>
-              <md-list-item ng-repeat="tweet in vm.tweetList" >
+              <md-list-item ng-repeat="tweet in vm.tweetList">
 
                 <img ng-src="{{tweet.face}}" class="md-avatar"/>
                 <div class="md-list-item-text">
-                  <h3>{{tweet.name}} {{tweet.id}}</h3>
-                  <p>{{tweet.text}}</p>
+                  <h3 ng-bind-html="'@'+tweet.name | linkUsername"></h3>
+                  <p>{{tweet.id}}</p>
+                  <p ng-bind-html="tweet.text | tweet"></p>
                 </div>
                 <div layout="row" layout-align="center center" class="md-secondary">
                   <div class="catlabel" ng-if="vm.categories[tweet.category]"> {{vm.categories[tweet.category].label}}
                   </div>
 
-                  <md-button class="md-icon-button red" ng-if="vm.categories[tweet.category]">
+                  <md-button class="md-icon-button red" ng-click="vm.removeTweet(tweet.id)" ng-if="vm.categories[tweet.category]">
                     <md-tooltip md-direction="top">
                       remove from category
                     </md-tooltip>
@@ -100,7 +141,8 @@
         <md-tab ng-if="vm.selectedCat" label="Category: {{vm.selectedCat}}" flex>
           <md-content class="md-padding">
             <md-list flex>
-              <md-list-item class="animate-repeat" ng-repeat="tweet in vm.catTweetList | filter:{ category: vm.selectedCatIndex}">
+              <md-list-item class="animate-repeat"
+                            ng-repeat="tweet in vm.catTweetList | filter:{ category: vm.selectedCatIndex}">
                 <img ng-src="{{tweet.face}}" class="md-avatar"/>
                 <div class="md-list-item-text">
                   <h3>{{tweet.name}} {{tweet.id}}</h3>

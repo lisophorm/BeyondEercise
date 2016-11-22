@@ -6,17 +6,17 @@
     .controller('MainController', MainController);
 
   /** @ngInject */
-  function MainController($timeout, $http, $mdDialog, Tweets, CatTweets, $scope, $mdMedia) {
+  function MainController($timeout, $http, $mdDialog, Tweets, CatTweets, $scope, $mdMedia, $mdSidenav) {
     var vm = this;
 
     vm.tweetsType = 0;
-    vm.loadInProgress=false;
+    vm.loadInProgress = false;
 
-    vm.tweetList = [
-    ];
+    vm.tweetList = [];
 
     vm.catTweetList = [];
 
+    vm.hashtag = "";
 
     vm.categories = [
       {label: 'category one'},
@@ -39,7 +39,7 @@
     vm.catclick = function (parentIndex, index) {
       console.log('click on index', parentIndex, index);
       vm.tweetList[parentIndex].category = index;
-      vm.catTweetList=CatTweets.addTweet(vm.tweetList[parentIndex], index);
+      vm.catTweetList = CatTweets.addTweet(vm.tweetList[parentIndex], index);
     }
 
     vm.showCat = function (index) {
@@ -47,7 +47,7 @@
 
       //vm.catTweetList = CatTweets.returnCat(index);
       vm.selectedCat = vm.categories[index].label;
-      vm.selectedCatIndex=index;
+      vm.selectedCatIndex = index;
       vm.tweetsType = 1;
     }
 
@@ -83,31 +83,33 @@
         console.log(ciao);
         if (typeof tweet !== 'undefined') {
           console.log('********* add to towwetsd ', tweet, category);
-          vm.tweetList[tweet].category=vm.categories.length-1;
-          vm.catTweetList=CatTweets.addTweet(vm.tweetList[tweet], vm.categories.length-1);
+          vm.tweetList[tweet].category = vm.categories.length - 1;
+          vm.catTweetList = CatTweets.addTweet(vm.tweetList[tweet], vm.categories.length - 1);
         }
       }, function () {
         //$scope.status = 'You didn\'t name your dog.';
       });
     };
 
-    vm.removeTweet=function(index) {
-      console.log('removing categorized',index);
-      vm.catTweetList=CatTweets.removeTweet(index);
-      vm.tweetList=Tweets.checkForCats(vm.catTweetList);
+    vm.removeTweet = function (index) {
+      console.log('removing categorized', index);
+      vm.catTweetList = CatTweets.removeTweet(index);
+      vm.tweetList = Tweets.checkForCats(vm.catTweetList);
       console.log('removed tweet new list');
       console.log(vm.catTweetList);
     }
 
     vm.searchTweets = function (searchString, isHash) {
-      vm.loadInProgress=true;
+      vm.loadInProgress = true;
       Tweets.searchTweets(searchString, isHash)
         .then(function (response) {
-          vm.tweetList = response;
-          vm.loadInProgress=false;
-
+          vm.searchString = "";
+          //vm.tweetList = response;
+          vm.tweetList = Tweets.checkForCats(vm.catTweetList);
+          vm.loadInProgress = false;
+          vm.tweetsType = 0;
         }, function (x) {
-          vm.loadInProgress=false;
+          vm.loadInProgress = false;
           $mdDialog.show(
             $mdDialog.alert()
               .parent(angular.element(document.querySelector('#popupContainer')))
@@ -124,10 +126,15 @@
 
     vm.search = function () {
       console.log('search', vm.searchString);
-      vm.searchTweets(vm.searchString,true);
+      $mdSidenav
+      vm.searchTweets(vm.hashtag + vm.searchString, true);
     }
 
-    vm.searchTweets ("epicfail",true);
+    vm.toggleSidenav = function (menuId) {
+      $mdSidenav(menuId).toggle();
+    };
+
+    vm.searchTweets("epicfail", true);
 
   }
 })();

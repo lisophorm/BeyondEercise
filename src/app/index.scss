@@ -54,12 +54,20 @@ html {
   padding: 0.2em 0;
 }
 
+a,a:active,a:hover,a:visited {
+  color:#4099ff;
+}
+
 md-toolbar md-icon.md-default-theme {
   color: white;
 }
 
 md-toolbar input {
   color: white;
+}
+
+md-input-container .md-errors-spacer{
+  min-height: 0px !important;
 }
 
 .catlabel {
@@ -76,8 +84,8 @@ md-toolbar input {
   list-style:none;
   /*box-sizing:border-box;*/
   border-bottom: 1px solid white;
-  -webkit-transition: 1s linear all;
-  transition: 1s linear all;
+  -webkit-transition: 0.2s linear all;
+  transition: 0.2s linear all;
 }
 
 .animate-repeat.ng-move,
@@ -106,8 +114,8 @@ md-toolbar input {
  */
 .animate-repeat.ng-leave-stagger {
   /* this will have a 100ms delay between each successive leave animation */
-  -webkit-transition-delay: 1s;
-  transition-delay: 1s;
+  -webkit-transition-delay: 0.2s;
+  transition-delay: 0.2s;
 
   /* in case the stagger doesn't work then these two values
    must be set to 0 to avoid an accidental CSS inheritance */
@@ -120,8 +128,8 @@ md-toolbar input {
  */
 .animate-repeat.ng-enter-stagger {
   /* this will have a 100ms delay between each successive enter animation */
-  -webkit-transition-delay: 1s;
-  transition-delay: 1s;
+  -webkit-transition-delay: 0.2s;
+  transition-delay: 0.2s;
 
   /* in case the stagger doesn't work then these two values
    must be set to 0 to avoid an accidental CSS inheritance */

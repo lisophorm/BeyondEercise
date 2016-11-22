@@ -6,7 +6,7 @@
     .factory('Tweets', Tweets);
 
   /** @ngInject */
-  function Tweets($http, $q) {
+  function Tweets($http, $q,configVar) {
 
     var tweetList = [];
 
@@ -16,7 +16,7 @@
       var hash = isHash == true ? "1" : "0";
 
 
-      $http.get('http://neos.crystal-bits.co.uk/neos.php', {
+      $http.get(configVar.twitterProxyURL, {
           params: {hash: hash, string: searchString},
           //headers: {'Authorization': 'Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ=='}
         }
