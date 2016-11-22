@@ -42,9 +42,7 @@
 
 
 
-    vm.search = function () {
-      console.log('search', vm.searchString);
-    }
+
 
     vm.catclick = function (parentIndex, index) {
       console.log('click on index', parentIndex, index);
@@ -124,6 +122,11 @@
           );
           console.log('error', x);
         });
+    }
+
+    vm.search = function () {
+      console.log('search', vm.searchString);
+      vm.searchTweets(vm.searchString,true);
     }
 
     vm.searchTweets ("epicfail",true);

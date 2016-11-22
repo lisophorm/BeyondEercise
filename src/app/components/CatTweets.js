@@ -29,6 +29,7 @@
           console.log('this tweet will be deleted');
         }
       }
+      tweetList=angular.copy(returnList);
       return returnList;
     }
 

@@ -1,5 +1,5 @@
-<div layout="row" layout-fill>
-
+<md-content>
+<div layout="row">
   <div layout="column">
     <md-sidenav
       class="md-sidenav-left"
@@ -23,15 +23,15 @@
   <div layout="column" flex>
 
     <md-toolbar>
-      <!--div class="md-toolbar-tools"-->
+      <div class="md-toolbar-tools">
 
-      <div layout="row" layout-align="center center">
-        <md-input-container md-theme="input" flex>
+
+        <md-input-container >
           <md-checkbox ng-model="data.cb1" aria-label="Checkbox 1">
             Hashtag
           </md-checkbox>
-          <label>&nbsp;</label>
-          <input ng-model="search.who" placeholder="enter search" style="margin-top:15px;margin-left:15px;">
+
+          <input ng-model="vm.searchString" placeholder="enter search" style="margin-top:15px;margin-left:15px;">
         </md-input-container>
 
         <md-button class="md-secondary md-icon-button" ng-click="">
@@ -41,8 +41,8 @@
           <i class="material-icons">search</i>
         </md-button>
 
+
       </div>
-      <!--/div-->
 
 
     </md-toolbar>
@@ -64,6 +64,9 @@
 
                 <md-menu>
                   <md-button class="md-icon-button">
+                    <md-tooltip md-direction="left">
+                      add to category
+                    </md-tooltip>
                     <i class="material-icons">add</i>
                   </md-button>
                   <md-menu-content width="6">
@@ -112,3 +115,4 @@
 
   </div>
 </div>
+</md-content>
