@@ -6,7 +6,7 @@ Working url: **http://neostest.crystal-bits.co.uk**
 
 Tested with: **Chrome and Firefox**
 
-This "prototype" has been developer with Angular 1.5 and Angular material.
+This "prototype" has been developed with Angular 1.5 and Angular material.
 All the requirements have been met. Except for the confirm dialogs I have covered almost all the possible scenarios.
 
 There may still be little glitches but the overall execution seems quite smooth.
