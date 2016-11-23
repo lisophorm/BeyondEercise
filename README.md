@@ -30,7 +30,7 @@ I have created 2 different kind of services:
  
 **Tweets** stores the search risults from the twitter api 
 
-**CatTweets** stores the tweets categorized by the user.For simplicity t
+**CatTweets** stores the tweets categorized by the user.
 
 I have also created some simple filters to format the single tweet on screen.
 
