@@ -1,34 +1,44 @@
-Neos - Front End Developer Test
+**Neos - Front End Developer Test**
 
-Candidate:Alfonso Florio
+Candidate:**Alfonso Florio**
 
-Working url: http://neostest.crystal-bits.co.uk
+Working url: **http://neostest.crystal-bits.co.uk**
 
 This "prototype" has been developer with Angular 1.5 and Angular material.
-All the requirements have been met. 
+All the requirements have been met. Except for the confirm dialogs I have covered almost all the possible scenarios.
 
-It is the fruit of 1 day of work. While there is room for improvement I am quite happy of the UI. I have kept the styling at minimum, again a lot more could be done but I am for "more is less". 
+There may still be little glitches but the overall execution seems quite smooth.
 
-It has been developer "mobile first" with a sidebar for the category management. It becomes fixed when the screen witdh > 960px;
+I hope you can feel in this execution the same passion I demonstrated during the phone interview.
 
-For simplicity the tweets are recovered by a PHP proxy using application-type oAuth. No sensitive information is contained within the Angular project.
 
-Also there are no routes, everything is kept within the same screen sharing data between different kind of content boxes.
+It is the fruit of 1 day of work. While there is room for improvement I am quite happy of the UI. I have kept the styling at minimum, "less is more".
+
+It has been developed "mobile first" with a sidebar for the category management. It becomes fixed when the screen witdh > 960px;
+
+The tweets are retrieved by a PHP proxy using application-type oAuth. No sensitive information is contained within the Angular project.
+
+There are no routes, everything is kept within the same screen sharing data between different kind of content boxes.
 
 I have also tried some simple animation for the list-items, unfortunately due to time restraint the result is not satisfactory and I have commented the code.
 
-All the steps of the application bootstrapping happen within the files index.*.js 
+All the steps of the application bootstrapping happens within the files index.*.js 
 
-I have created 2 different kind of services: **Tweets** that stores the search risults from the twitter api and **CatTweets** that stores the tweets categorized by the user.
-Creating a data model for a single tweet whould have just added complexity without any real benefits.
+I have created 2 different kind of services:
+ 
+**Tweets** stores the search risults from the twitter api 
+
+**CatTweets** stores the tweets categorized by the user.For simplicity t
+
 I have also created some simple filters to format the single tweet on screen.
-I have created the directive EnterKey so the search can be initiated also by pressing the enter key.
+
+The directive **EnterKey** checks for keypress and trigger the search.
 
 All the user interation is kept within **main/main.controller.js**
 
-Do not hesitate to contact me if you have any questions
+_Do not hesitate to contact me if you have any questions_
 
-07459 301326 - lisophorm@gmail.com
+**07459 301326 - lisophorm@gmail.com**
 
 ![screenshot](/screenshots/screen1.PNG)
 

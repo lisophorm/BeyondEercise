@@ -48,41 +48,6 @@
       </div>
 
     </md-toolbar>
-    <!--md-toolbar layout="row">
-      <div class="md-toolbar-tools" layout-align="center center">
-
-        <md-button ng-click="vm.toggleSidenav('left')" hide-gt-sm aria-label="Menu">
-          <md-tooltip md-direction="bottom">
-            category manager
-          </md-tooltip>
-          <ng-md-icon icon="menu"></ng-md-icon>
-        </md-button>
-        <md-input-container>
-
-
-          <input ng-model="vm.searchString" placeholder="enter search" style="margin-top:15px;margin-left:15px;">
-        </md-input-container>
-<md-button ng-click="vm.toggleSidenav('left')" hide-gt-sm aria-label="Menu">
-          <md-tooltip md-direction="bottom">
-            category manager
-          </md-tooltip>
-          <ng-md-icon icon="menu"></ng-md-icon>
-        </md-button>
-        <md-button class="md-secondary md-icon-button" ng-click="">
-          <i class="material-icons">cancel</i>
-        </md-button>
-        <md-button class="md-secondary md-icon-button" ng-click="vm.search()">
-          <i class="material-icons">search</i>
-        </md-button>
-
-
-      </div>
-
-
-    </md-toolbar-->
-
-
-
 
 
     <md-content layout-fill layout="column" flex>
@@ -96,11 +61,10 @@
                 <img ng-src="{{tweet.face}}" class="md-avatar"/>
                 <div class="md-list-item-text">
                   <h3 ng-bind-html="'@'+tweet.name | linkUsername"></h3>
-                  <p>{{tweet.id}}</p>
                   <p ng-bind-html="tweet.text | tweet"></p>
                 </div>
                 <div layout="row" layout-align="center center" class="md-secondary">
-                  <div class="catlabel" ng-if="vm.categories[tweet.category]"> {{vm.categories[tweet.category].label}}
+                  <div class="catlabel" ng-click="vm.showCat(tweet.category)" ng-if="vm.categories[tweet.category]"> {{vm.categories[tweet.category].label}}
                   </div>
 
                   <md-button class="md-icon-button red" ng-click="vm.removeTweet(tweet.id)" ng-if="vm.categories[tweet.category]">
@@ -145,8 +109,8 @@
                             ng-repeat="tweet in vm.catTweetList | filter:{ category: vm.selectedCatIndex}">
                 <img ng-src="{{tweet.face}}" class="md-avatar"/>
                 <div class="md-list-item-text">
-                  <h3>{{tweet.name}} {{tweet.id}}</h3>
-                  <p>{{tweet.text}}</p>
+                  <h3 ng-bind-html="'@'+tweet.name | linkUsername"></h3>
+                  <p ng-bind-html="tweet.text | tweet"></p>
                 </div>
                 <div layout="row" layout-align="center center" class="md-secondary">
                   <md-button class="md-secondary md-icon-button red" ng-click="vm.removeTweet(tweet.id)">

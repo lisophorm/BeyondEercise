@@ -7,9 +7,7 @@
 
   /** @ngInject */
   function config(configVar) {
-    console.log('ciao');
-    console.log(configVar.twitteroauthToken);
-    //
+
   }
 
 })();
