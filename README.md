@@ -1,5 +1,7 @@
 **Neos - Front End Developer Test**
 
+Requirements: https://drive.google.com/open?id=1cch5_DpCg90Enn8M2Oj4ArbJO82VAuhbE7JIN12qbUI
+
 Candidate:**Alfonso Florio**
 
 Working url: **http://neostest.crystal-bits.co.uk**
